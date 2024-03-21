@@ -137,6 +137,9 @@ public class CalculatorGUI extends JFrame{
                 Polynomial p = convertor.convertStringToPolynomial(pTextField.getText());
                 Polynomial q = convertor.convertStringToPolynomial(qTextField.getText());
                 //adauga pentru impartitor = 0
+                if(q.getMonomials().isEmpty()) {
+                    showErrorDialog("Input Error", "CANNOT DIVIDE BY 0!");
+                }
                 if (!p.getMonomials().isEmpty() && (p.getMonomials().get(0).getDegree() < q.getMonomials().get(0).getDegree())) {
                     showErrorDialog("Input Error", "THE DEGREE OF THE NUMERATOR IS SMALLER\n " +
                             "THAN THE DEGREE OF THE DENOMINATOR,\n " +

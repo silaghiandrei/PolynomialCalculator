@@ -91,15 +91,20 @@ public class Convertor {
         } else {
             if (input.contains("^.") || input.contains("^+") || input.contains("^-")
                     || input.contains(".^") || input.contains("+^") || input.contains("-^")
-                    || input.contains(" ^") || input.contains("^ ")) {
+                    || input.contains(" ^") || input.contains("^ ") || input.contains("XX")
+                    || input.contains("xx")) {
                 return 0;
             }
-            char[] inputChars = input.toCharArray();
-            for (char c : inputChars) {
+            boolean foundX = false;
+            for (char c : input.toCharArray()) {
                 String currentChar = String.valueOf(c);
                 if (!isCharacterAllowed(currentChar)) {
                     return 0;
                 }
+                if (foundX && Character.isDigit(c)) {
+                    return 0;
+                }
+                foundX = (c == 'X');
             }
         }
         return 1;
